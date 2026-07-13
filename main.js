@@ -48,12 +48,13 @@ function renderGallery() {
             <div class="img-container">
                 <img src="${getThumbnail(item.url)}" alt="${item.country}" onerror="this.src='https://via.placeholder.com/400x260?text=Image+Not+Found'">
                 <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.year} (#${item.id})</div>
+               <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.country}</div>
             </div>
             <div class="p-5 flex-grow">
                 <div class="flex justify-between items-center mb-1">
-                    <h3 class="font-bold text-slate-800 text-lg">${item.country} ${item.memo1}</h3>
+                    <h3 class="font-bold text-slate-500 text-sm">📍${item.region}</h3>
                 </div>
-                <p class="text-slate-500 text-sm mb-4 italic">${item.region}</p>
+                <p class="text-slate-500 text-sm mb-4 italic">${item.memo1}</p>
                 <a href="${item.url}" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl transition-all text-sm">打開相簿</a>
             </div>
         `;
@@ -89,19 +90,59 @@ function renderPagination() {
 function handleFilter() {
     const r = document.getElementById('regionFilter').value;
     const c = document.getElementById('countryFilter').value;
-    filteredData = rawData.filter(item => (r === 'all' || item.region === r) && (c === 'all' || item.country === c));
+    const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    filteredData = rawData.filter(item => {
+        // 1. 先檢查篩選器條件
+        const matchRegion = (r === 'all' || item.region === r);
+        const matchCountry = (c === 'all' || item.country === c);
+        if (!matchRegion || !matchCountry) return false;
+
+        // 2. 如果沒有關鍵字，直接通過
+        if (!keyword) return true;
+
+        // 建立要搜尋的目標文字內容
+        const text = [item.country, item.region, item.memo1].join(' ').toLowerCase();
+
+        // 3. 處理 AND 邏輯 (例如: 台灣 and 阿里山)
+        if (keyword.includes(' and ')) {
+            const keywords = keyword.split(/\s+and\s+/i);
+            return keywords.every(k => text.includes(k.trim()));
+        }
+
+        // 4. 處理 OR 邏輯 (例如: 中國 or 瑞士)
+        if (keyword.includes(' or ')) {
+            const keywords = keyword.split(/\s+or\s+/i);
+            return keywords.some(k => text.includes(k.trim()));
+        }
+
+        // 5. 一般搜尋 (包含單一關鍵字)
+        return text.includes(keyword);
+    });
+
     currentPage = 1;
     renderGallery();
 }
 
+// 在 window.onload 中加入搜尋框的監聽事件
 window.onload = () => {
     initRegionFilter();
-    document.getElementById('regionFilter').onchange = (e) => { updateCountryOptions(e.target.value); handleFilter(); };
+    
+    // 綁定所有篩選元件的事件
+    document.getElementById('regionFilter').onchange = (e) => { 
+        updateCountryOptions(e.target.value); 
+        handleFilter(); 
+    };
     document.getElementById('countryFilter').onchange = handleFilter;
+    
+    // 新增：搜尋框輸入時觸發篩選
+    document.getElementById('searchInput').oninput = handleFilter;
+
     document.getElementById('resetBtn').onclick = () => {
         document.getElementById('regionFilter').value = 'all';
         updateCountryOptions('all');
         document.getElementById('countryFilter').value = 'all';
+        document.getElementById('searchInput').value = ''; // 重設搜尋框
         filteredData = [...rawData];
         currentPage = 1;
         renderGallery();
