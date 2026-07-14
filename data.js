@@ -1,7 +1,7 @@
 // data.js
 const rawData = [
-{id: 1, year: "2024", region: "上海",country: "中國",url: "https://drive.google.com/file/d/1m_UFVphK9yd-FiRcfWvChMOm0G8tMnOK/view" , memo1:"(外灘)"},
-{id: 2, year: "2024", region: "上海",country: "中國",url: "https://drive.google.com/file/d/1mOvsoJjDDRhVSEfAoHo3EX8viqonhIUn/view" , memo1:""},
+{id: 1, year: "2024", region: "亞洲",country: "中國",url: "https://drive.google.com/file/d/1m_UFVphK9yd-FiRcfWvChMOm0G8tMnOK/view" , memo1:"上海外灘"},
+{id: 2, year: "2024", region: "亞洲",country: "中國",url: "https://drive.google.com/file/d/1mOvsoJjDDRhVSEfAoHo3EX8viqonhIUn/view" , memo1:"上海"},
 {id: 3, year: "2024", region: "波羅的海三國",country: "立陶宛",url: "https://drive.google.com/file/d/1_x03q-TwGOZPaEqmhMkzj_g-4k_IpbSE/view" , memo1:"(維爾紐斯主教座堂)"},
 {id: 4, year: "2024", region: "波羅的海三國",country: "立陶宛",url: "https://drive.google.com/file/d/1DijhduWQbvmWLLKmv2IHImA2eY_exJWf/view" , memo1:""},
 {id: 5, year: "2024", region: "波羅的海三國",country: "立陶宛",url: "https://drive.google.com/file/d/1paUx-r7HmALYcZ5wXzvRi7gpV5XtWPX7/view" , memo1:""},
@@ -1663,8 +1663,8 @@ const rawData = [
 {id: 1661, year: "1901", region: "中歐",country: "瑞士",url: "https://www.w3schools.com/html/mov_bbb.mp4" , memo1:"冰河列車動態紀錄"},
 {id: 1662, year: "1901", region: "台灣",country: "花蓮",url: "https://drive.google.com/file/d/1DgLM2KZuNNlWEqAl7aFYTMna7Rzupzfj/view?usp=drive_link" , memo1:"清水斷崖"},
 
-  {id: 1663, year: "2026", region: "中歐", country: "義瑞之旅", url: "https://drive.google.com/file/d/1izWU2L8EmpQ3BuMbF6FWwzEG9IqG0Vsw/view?usp=drive_link", memo1: "1 ~ 4 天"},
-  {id: 1664, year: "2026", region: "中歐", country: "義瑞之旅", url: "https://drive.google.com/file/d/1TAVAQIct8AmdVN8NfadLmzyWl5A1bOpH/view?usp=drive_link", memo1: "5 ~ 8 天"},
+  {id: 1663, year: "2026", region: "中歐", country: "瑞士", url: "https://drive.google.com/file/d/1izWU2L8EmpQ3BuMbF6FWwzEG9IqG0Vsw/view?usp=drive_link", memo1: "義瑞之旅 1 ~ 4 天"},
+  {id: 1664, year: "2026", region: "中歐", country: "瑞士", url: "https://drive.google.com/file/d/1TAVAQIct8AmdVN8NfadLmzyWl5A1bOpH/view?usp=drive_link", memo1: "義瑞之旅 5 ~ 8 天"},
   {id: 1665, year: "2026", region: "中歐", country: "瑞士", url: "https://drive.google.com/file/d/1ojlEuG5ipKx0mnIYm5Ad2QquBAbs-xPY/view?usp=drivesdk", memo1: "飛機上 前往義大利"},
   {id: 1666, year: "2026", region: "中歐", country: "瑞士", url: "https://drive.google.com/file/d/1R3z31EItqDFunlZuMCYA25Qosw4s9rtp/view?usp=drivesdk", memo1: "飛機 日出"},
   {id: 1667, year: "2026", region: "中歐", country: "瑞士", url: "https://drive.google.com/file/d/1RPxwOLQakzv7XlPagw1WrBGDsYLQVuwZ/view?usp=drivesdk", memo1: "盧森湖"},
