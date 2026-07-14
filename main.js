@@ -90,12 +90,22 @@ function renderPagination() {
         return btn;
     };
 
-    container.appendChild(createBtn('«', 1, false, currentPage === 1));
-    for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
-            container.appendChild(createBtn(i, i, i === currentPage));
-        }
+    // 顯示按鈕的總數量限制
+    const maxVisible = 8;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = startPage + maxVisible - 1;
+
+    if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = Math.max(1, endPage - maxVisible + 1);
     }
+
+    container.appendChild(createBtn('«', 1, false, currentPage === 1));
+    
+    for (let i = startPage; i <= endPage; i++) {
+        container.appendChild(createBtn(i, i, i === currentPage));
+    }
+    
     container.appendChild(createBtn('»', totalPages, false, currentPage === totalPages));
 }
 
