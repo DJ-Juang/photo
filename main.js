@@ -41,25 +41,25 @@ function renderGallery() {
     const start = (currentPage - 1) * itemsPerPage;
     const pageItems = filteredData.slice(start, start + itemsPerPage);
 
-    pageItems.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col';
-        card.innerHTML = `
-            <div class="img-container">
-                <img src="${getThumbnail(item.url)}" alt="${item.country}" onerror="this.src='https://via.placeholder.com/400x260?text=Image+Not+Found'">
-                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.year} (#${item.id})</div>
-               <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.country}</div>
+pageItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col';
+    card.innerHTML = `
+        <div class="img-container">
+            <img src="${getThumbnail(item.url)}" alt="${item.country}" onerror="this.src='https://via.placeholder.com/400x260?text=Image+Not+Found'">
+            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.year} (#${item.id})</div>
+            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-blue-600 shadow-sm">${item.region}</div>
+        </div>
+        <div class="p-5 flex-grow">
+            <div class="flex justify-between items-center mb-1">
+                <h3 class="font-bold text-slate-500 text-sm">📍${item.country}</h3>
             </div>
-            <div class="p-5 flex-grow">
-                <div class="flex justify-between items-center mb-1">
-                    <h3 class="font-bold text-slate-500 text-sm">📍${item.region}</h3>
-                </div>
-                <p class="text-slate-500 text-sm mb-4 italic">${item.memo1}</p>
-                <a href="${item.url}" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl transition-all text-sm">打開相簿</a>
-            </div>
-        `;
-        gallery.appendChild(card);
-    });
+            <p class="text-slate-500 text-sm mb-4 italic">${item.memo1}</p>
+            <a href="${item.url}" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl transition-all text-sm">打開相簿</a>
+        </div>
+    `;
+    gallery.appendChild(card);
+});
     renderPagination();
 }
 
