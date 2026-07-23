@@ -4,8 +4,16 @@ let currentPage = 1;
 const itemsPerPage = 12;
 
 function getThumbnail(url) {
-    const idMatch = url.match(/\/d\/(.+?)\//);
-    return idMatch ? `http://googleusercontent.com/profile/picture/${idMatch[1]}` : 'https://via.placeholder.com/400x260?text=No+Preview';
+    if (!url) return 'https://via.placeholder.com/400x260?text=No+Preview';
+    
+    // 抓取 Google Drive 檔案 ID
+    const match = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^&]+)/);
+    if (match && match[1]) {
+        // 使用標準的 Google Drive 預覽縮圖網址
+        return `https://lh3.googleusercontent.com/d/${match[1]}=w600`;
+    }
+    
+    return 'https://via.placeholder.com/400x260?text=No+Preview';
 }
 
 function initRegionFilter() {
