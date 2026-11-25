@@ -4,7 +4,7 @@ let currentPage = 1;
 const itemsPerPage = 12;
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('data.json')
+    fetch('hsieh-data.json')
     .then(res => {
         if (!res.ok) throw new Error('無法載入 data.json');
         return res.json();
